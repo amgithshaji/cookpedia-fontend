@@ -1,1 +1,52 @@
-<p>recipes works!</p>
+<app-header></app-header>
+<div class="container my-5" >
+    <div class="row">
+        <div class="col-lg-4">
+            <h4>Filter</h4>
+            <!-- all btn -->
+             <button class="btn mt-5" >All</button>
+             <!-- cuisine dropdown -->
+
+             <div>
+  <button class="btn  dropdown-toggle" type="button"  data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false">
+    Cuisine type
+  </button>
+ <div class="collapse" id="collapseExample">
+    <!-- duplicate accroding cuisine type -->
+<button class="btn" >cuisine</button>
+</div>
+
+</div>
+
+              <!-- meal type -->
+     <div>
+  <button class="btn  dropdown-toggle" type="button"  data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false">
+    meal type
+  </button>
+ <div class="collapse" id="collapseExample1">
+    <!-- duplicate accroding meal type -->
+<button class="btn" >cuisine</button>
+</div>
+
+</div>
+        </div>
+        <div class="col-lg-8">
+            <div class="d-flex justify-content-between">
+                <h1>All recipes</h1>
+                <input type="text" placeholder="search recipes here" class="form-control w-50">
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                      <div class="p-3">
+                    <img class="card-img-top" src="https://www.pngall.com/wp-content/uploads/2/Healthy-Meal.png" alt="meal img">
+                    <div class="card-body">
+                        <h5 class="card-title" >name</h5>
+                        <p>Cuisine : cuisine</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

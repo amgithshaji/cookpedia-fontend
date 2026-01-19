@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component,inject, signal } from '@angular/core';
 import { Footer } from '../footer/footer';
 import { Header } from '../header/header';
 import { RouterLink } from "@angular/router";
+import { ApiService } from '../services/api-service';
 
 @Component({
   selector: 'app-home',
@@ -10,5 +11,21 @@ import { RouterLink } from "@angular/router";
   styleUrl: './home.css',
 })
 export class Home {
+  
+  allRecipes:any = signal([])
+  api = inject(ApiService)
+
+  ngOnInit(){
+    this.getAllRecipes()
+  }
+
+  getAllRecipes(){
+    this.api.getAllRecipes().subscribe((res:any)=>{
+      // console.log(res);
+      this.allRecipes.set(res.slice(0,6))
+      console.log(this.allRecipes());
+      
+    })
+  }
 
 }
