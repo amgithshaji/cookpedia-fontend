@@ -36,15 +36,19 @@
                 <input type="text" placeholder="search recipes here" class="form-control w-50">
             </div>
             <div class="row">
-                <div class="col-lg-4">
+               @for (recipe of allRecipes(); track $index) {
+                 <div class="col-lg-4">
                       <div class="p-3">
-                    <img class="card-img-top" src="https://www.pngall.com/wp-content/uploads/2/Healthy-Meal.png" alt="meal img">
+                    <img class="card-img-top" [src]="recipe.image" alt="meal img">
                     <div class="card-body">
-                        <h5 class="card-title" >name</h5>
-                        <p>Cuisine : cuisine</p>
+                        <h5 class="card-title" >{{recipe.name}}</h5>
+                        <p>Cuisine : {{recipe.cuisine}}</p>
                     </div>
                 </div>
                 </div>
+               }
+        
+               
             </div>
         </div>
     </div>
