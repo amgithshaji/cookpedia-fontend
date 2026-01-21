@@ -7,23 +7,35 @@
     <div class="row align-items-center">
 
       <!-- LEFT REGISTER CARD -->
-      <div class="col-12 col-md-6 d-flex justify-content-center mb-4 mb-md-0">
-        <div class="card shadow border-0 p-4" style="max-width:420px; width:100%;">
-          <div class="text-center mb-3">
-            <h4 class="fw-bold">
-              <i class="fa-solid fa-graduation-cap me-2"></i>Cookpedia
-            </h4>
+        <form [formGroup]="registerForm" (ngSubmit)="register()" class="col-12 col-md-6 d-flex justify-content-center mb-4 mb-md-0">
+          <div class="card shadow border-0 p-4" style="max-width:420px; width:100%;">
+            <div class="text-center mb-3">
+              <h4 class="fw-bold">
+                <i class="fa-solid fa-graduation-cap me-2"></i>Cookpedia
+              </h4>
+            </div>
+  
+            <input name="username" formControlName="username" class="form-control mb-3 py-2" placeholder="Username">
+            @if (registerForm.get('username')?.errors && registerForm.get('username')?.touched) {
+                 <div class="mb-3 text-danger fw-bolder" >*invalid username</div>
+
+            }
+            <input name="email" formControlName="email" class="form-control mb-3 py-2" placeholder="E Mail">
+            @if (registerForm.get('email')?.errors && registerForm.get('email')?.touched) {
+                 <div class="mb-3 text-danger fw-bolder" >*invalid email</div>
+
+            }
+            <input name="password" formControlName="password" type="password" class="form-control mb-3 py-2" placeholder="Password">
+            @if (registerForm.get('password')?.errors && registerForm.get('password')?.touched) {
+                 <div class="mb-3 text-danger fw-bolder" >*invalid password</div>
+
+            }
+  
+            <button type="submit" class="btn btn-success w-100 py-2 fw-semibold">
+              register
+            </button>
           </div>
-
-          <input class="form-control mb-3 py-2" placeholder="Username">
-          <input class="form-control mb-3 py-2" placeholder="E Mail">
-          <input type="password" class="form-control mb-3 py-2" placeholder="Password">
-
-          <button class="btn btn-success w-100 py-2 fw-semibold">
-            register
-          </button>
-        </div>
-      </div>
+        </form>
 
       <!-- RIGHT CONTENT -->
       <div class="col-12 col-md-6">

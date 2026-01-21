@@ -13,5 +13,10 @@ http = inject(HttpClient)
 getAllRecipes(){
   return this.http.get(`${this.server_url}/recipes`)
 }
+// register:called from register component
+registerAPI(user:any){
+  return this.http.post(`${this.server_url}/register`,user)
+
+}
   
 }
