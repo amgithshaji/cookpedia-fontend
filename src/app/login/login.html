@@ -17,35 +17,39 @@
         </div>
 
         <!-- Login Card -->
-        <div class="card shadow p-4 border-0 rounded-3">
+        <form [formGroup]="loginForm" (ngSubmit)="login()" class="card shadow p-4 border-0 rounded-3">
           <div class="text-center mb-3">
             <h4 class="fw-bold mb-0">
               <i class="fa-solid fa-graduation-cap"></i>Cookpedia
             </h4>
           </div>
 
-          <form>
+          <div>
             <div class="mb-3">
-              <input 
-                type="email" 
-                class="form-control py-2" 
-                placeholder="E Mail"
-              >
+              <input name="email" formControlName="email" type="email" class="form-control py-2" placeholder="E Mail" >
             </div>
+              @if (loginForm.get('email')?.errors && loginForm.get('email')?.touched) {
+                 <div class="mb-3 text-danger fw-bolder" >*invalid email</div>
+
+            }
 
             <div class="mb-3">
-              <input 
+              <input name="password" formControlName="password"
                 type="password" 
                 class="form-control py-2" 
                 placeholder="Password"
               >
             </div>
+              @if (loginForm.get('password')?.errors && loginForm.get('password')?.touched) {
+                 <div class="mb-3 text-danger fw-bolder" >*invalid password</div>
 
-            <button class="btn btn-success w-100 py-2 fw-semibold">
+            }
+
+            <button type="submit" class="btn btn-success w-100 py-2 fw-semibold">
               Login
             </button>
-          </form>
-        </div>
+          </div>
+        </form>
 
       </div>
     </div>
