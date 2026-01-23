@@ -23,5 +23,16 @@ loginAPI(user:any){
   return this.http.post(`${this.server_url}/login`,user)
 
 }
+// view Recipe  : view component 
+viewRecipeAPI(recipeId:string){
+  return this.http.get(`${this.server_url}/recipes/${recipeId}`)
+
+}
+// get related ?cuisine
+getRelatedRecipeAPI(cuisine:string){
+  return this.http.get(`${this.server_url}/related-recipes?cuisine=${cuisine}`)
+
+}
+
   
 }
