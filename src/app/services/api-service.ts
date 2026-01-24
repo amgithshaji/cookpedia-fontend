@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable,inject } from '@angular/core';
 
 @Injectable({
@@ -23,15 +23,29 @@ loginAPI(user:any){
   return this.http.post(`${this.server_url}/login`,user)
 
 }
+
+appenedToken(){
+  const token = sessionStorage.getItem("token")
+  let headers = new HttpHeaders()
+  if (token) {
+    headers = headers.append("Authorization",`Bearer ${token}`)
+    
+  }
+  return {headers}
+}
 // view Recipe  : view component 
 viewRecipeAPI(recipeId:string){
-  return this.http.get(`${this.server_url}/recipes/${recipeId}`)
+  return this.http.get(`${this.server_url}/recipes/${recipeId}`,this.appenedToken())
 
 }
 // get related ?cuisine
 getRelatedRecipeAPI(cuisine:string){
-  return this.http.get(`${this.server_url}/related-recipes?cuisine=${cuisine}`)
+  return this.http.get(`${this.server_url}/related-recipes?cuisine=${cuisine}`,this.appenedToken())
 
+}
+// downloads/:id api
+addToDownloadAPI(recipeId:string,reqBody:any){
+return this.http.post(`${this.server_url}/downloads/${recipeId}`,reqBody,this.appenedToken())
 }
 
   
