@@ -48,5 +48,26 @@ addToDownloadAPI(recipeId:string,reqBody:any){
 return this.http.post(`${this.server_url}/downloads/${recipeId}`,reqBody,this.appenedToken())
 }
 
+
+// save recipe 
+addToSaveRecipeAPI(recipeId:string,reqBody:any){
+return this.http.post(`${this.server_url}/recipes/${recipeId}/save`,reqBody,this.appenedToken())
+}
+
+// get save recipe
+getUserSaveRecipesAPI(){
+  return this.http.get(`${this.server_url}/recipe-collection`,this.appenedToken())
+
+}
+
+//delete save recipe
+removeUserSaveRecipesAPI(recipeId:string){
+  return this.http.delete(`${this.server_url}/recipe-collection/${recipeId}`,this.appenedToken())
+}
+
+//add feedback
+addFeedbackAPI(reqBody:any){
+  return this.http.post(`${this.server_url}/feedback`,reqBody)
+}
   
 }
