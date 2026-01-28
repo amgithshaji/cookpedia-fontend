@@ -5,9 +5,7 @@
   <div class="container text-center py-4">
     <h1 class="fw-bold mb-3">Contact Us</h1>
     <p class="mx-auto" style="max-width:700px;">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Suscipit minima odio ab fugiat eaque sit soluta quibusdam
-      sed minus iure facere necessitatibus.
+     We’d love to hear from you! If you have any questions, suggestions, or feedback about Cookpedia, feel free to contact us. Your thoughts help us improve and make Cookpedia better for everyone. We’ll get back to you as soon as possible.”
     </p>
   </div>
 </div>
@@ -21,8 +19,8 @@
     <div class="col-md-6">
       <h3 class="fw-bold mb-3">Get In Touch</h3>
       <p class="text-muted">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Nisi quasi odio aperiam! Quasi eius expedita.
+          Have a question, feedback, or suggestion about Cookpedia? Get in touch with us anytime.
+          We’re always happy to hear from you and help make your cooking experience better.
       </p>
 
       <!-- ADDRESS -->
@@ -54,7 +52,7 @@
         </div>
         <div>
           <h6 class="fw-bold mb-0">E Mail</h6>
-          <small class="text-muted">mail</small>
+          <small class="text-muted">cookpedia@gmail.com</small>
         </div>
       </div>
 
@@ -77,7 +75,7 @@
     </div>
 
     <!-- RIGHT FORM -->
-    <div class="col-md-6">
+    <!-- <div class="col-md-6">
       <div class="card shadow-sm border-0 p-4">
         <h4 class="fw-bold mb-3">Client Testimony</h4>
 
@@ -97,7 +95,50 @@
     </div>
 
   </div>
+</div> -->
+
+
+<!-- RIGHT FORM -->
+<div class="col-md-6">
+  <form #feedbackForm="ngForm" (ngSubmit)="addFeedBack()" class="card shadow-sm border-0 p-4">
+    <h4 class="fw-bold mb-3">Client Testimony</h4>
+
+    <input #username="ngModel" type="text" class="form-control mb-3" placeholder="Name"
+      [(ngModel)]="name" name="name" required pattern="[a-zA-Z ]*">
+
+    @if (username.invalid && username.touched) {
+            <div class="mb-3 text-danger fw-bolder" >*invalid name</div>
+
+    }
+
+    <input #mail="ngModel" type="email" class="form-control mb-3" placeholder="E Mail"
+      [(ngModel)]="email" name="email"  email required>
+
+        @if (mail.invalid && mail.touched) {
+            <div class="mb-3 text-danger fw-bolder" >*invalid mail</div>
+
+    }
+
+    <textarea #emessage="ngModel" class="form-control mb-3" rows="4" placeholder="Message"
+      [(ngModel)]="message" name="message" required ></textarea>
+
+           @if (emessage.invalid && emessage.touched) {
+            <div class="mb-3 text-danger fw-bolder" >*invalid message</div>
+
+    }
+
+    <small class="text-muted d-block mb-3">
+      By Submitting, your agreeing the terms and condition of our website.
+      We may use your details in our site.
+    </small>
+
+    <button [disabled]="feedbackForm.invalid" type="submit" class="btn btn-success ms-auto d-block px-4"
+      >
+      Submit
+    </button>
+  </form>
 </div>
+
 
 <!-- MAP -->
 <div class="container my-5">

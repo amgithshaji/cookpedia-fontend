@@ -69,5 +69,11 @@ removeUserSaveRecipesAPI(recipeId:string){
 addFeedbackAPI(reqBody:any){
   return this.http.post(`${this.server_url}/feedback`,reqBody)
 }
+
+// get user download recipe
+getUserDownloadListAPI(){
+  return this.http.get(`${this.server_url}/user-downloads`,this.appenedToken())
+
+}
   
 }
