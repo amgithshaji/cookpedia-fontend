@@ -12,6 +12,7 @@ import { ApiService } from '../services/api-service';
 })
 export class Home {
   
+  feedbacks:any = signal([[]])
   allRecipes:any = signal([])
   api = inject(ApiService)
 
@@ -25,6 +26,12 @@ export class Home {
       this.allRecipes.set(res.slice(0,6))
       console.log(this.allRecipes());
       
+    })
+  }
+
+  getFeedbacks(){
+    this.api.getApproveFeedbacksAPI().subscribe((res:any)=>{
+      this.feedbacks.set(res)
     })
   }
 

@@ -75,5 +75,18 @@ getUserDownloadListAPI(){
   return this.http.get(`${this.server_url}/user-downloads`,this.appenedToken())
 
 }
+
+// put request from profile
+editUserPictureAPI(reqBody:any){
+  return this.http.put(`${this.server_url}/user-edit`,reqBody,this.appenedToken())
+
+}
+
+// get appprove feedback
+getApproveFeedbacksAPI(){
+  return this.http.get(`${this.server_url}/feedbacks-approve`)
+
+}
+
   
 }

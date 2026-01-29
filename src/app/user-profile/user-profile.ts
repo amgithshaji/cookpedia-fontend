@@ -16,12 +16,13 @@ export class UserProfile {
   api = inject(ApiService)
   downloadList:any = signal([])
   username:string = ""
-  userImage:string = "https://img.freepik.com/free-photo/close-up-portrait-curly-handsome-european-male_176532-8133.jpg?semt=ais_hybrid&w=740&q=80"
+  userImage:any = signal("https://img.freepik.com/free-photo/close-up-portrait-curly-handsome-european-male_176532-8133.jpg?semt=ais_hybrid&w=740&q=80")
 
   ngOnInit(){
     if (sessionStorage.getItem("user")) {
       const user = JSON.parse(sessionStorage.getItem("user")||"")
       this.username = user.username
+      user.picture && this.userImage.set(`${this.api.server_url}/uploads/${user.picture}`)
       
     }
     this.getUserDownloadList()
@@ -34,5 +35,20 @@ export class UserProfile {
       
     })
   }
+
+updateProfile(event:Event){
+  const input = event.target as HTMLInputElement
+  if (input.files && input.files.length>0) {
+    const uploadFile = input.files[0]
+    const reqBody = new FormData()
+    reqBody.append("picture",uploadFile)
+    this.api.editUserPictureAPI(reqBody).subscribe((res:any)=>{
+      alert("profile update successfully")
+      sessionStorage.setItem("user",JSON.stringify(res))
+      this.userImage.set(`${this.api.server_url}/uploads/${res.picture}`)
+    })
+    
+  }
+}
 
 }
