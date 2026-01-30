@@ -87,6 +87,15 @@ getApproveFeedbacksAPI(){
   return this.http.get(`${this.server_url}/feedbacks-approve`)
 
 }
+// admin get all users list
+getUserListAPI(){
+  return this.http.get(`${this.server_url}/user-list`,this.appenedToken())
 
+}
+// admin get all download list
+getDownloadAPI(){
+  return this.http.get(`${this.server_url}/downloads`,this.appenedToken())
+
+}
   
 }

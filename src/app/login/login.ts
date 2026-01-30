@@ -35,12 +35,13 @@ export class Login {
         next:(res:any)=>{
           sessionStorage.setItem("token",res.token)
           sessionStorage.setItem("user",JSON.stringify(res.user))
-          this.toaster.success("user login successfull")
+          alert("user login successfull")
           this.loginForm.reset()
-
-          setTimeout(()=>{
-          this.router.navigateByUrl('/')
-          },2000)
+          if (res.user.role=="user"){
+            this.router.navigateByUrl('/')          
+          }else{
+            this.router.navigateByUrl('/admin')
+          }
         },
         error:(reason:any)=>{
           this.toaster.warning(reason.error);
@@ -48,7 +49,7 @@ export class Login {
        })
       
     }else{
-      this.toaster.info("invalid inputs...please fill the form with valid data!!!")
+      alert("invalid inputs...please fill the form with valid data!!!")
     }
   }
   
