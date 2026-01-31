@@ -4,9 +4,9 @@
     <div style="width: 220px; height: 220px; border-radius: 50%; margin-top: -110px; " class="p-1 shadow d-flex justify-content-center align-items-center" >
        <label for="upload"> <img style="width: 200px; height: 200px; border-radius: 50%;" [src]="userImage()" alt="user profile">
     </label>
-    <input type="file" id="upload" hidden>
+    <input (change)="updateProfile($event)" type="file" id="upload" accept="image/*" hidden>
     </div>
-    <label style="margin-top: -40px; margin-left: 100px;" for="upload" class="btn bg-light" > <i class="fa-solid fa-upload fa-2xl  text-success" > </i> </label>
+    <label  style="margin-top: -40px; margin-left: 100px;" for="upload" class="btn bg-light" > <i class="fa-solid fa-upload fa-2xl  text-success" > </i> </label>
    <h1>{{username}} <i class="fa-solid fa-check fa-1xl  text-info" > </i> </h1>
    <p style="text-align: justify;" class="my-3" >
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab commodi voluptas ratione amet id mollitia aliquam fugiat provident vero modi sapiente, obcaecati qui non alias officia animi nobis nesciunt beatae.
