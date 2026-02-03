@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable,inject } from '@angular/core';
+import { RecipeModel } from '../admin/model/recipeModel';
 
 @Injectable({
   providedIn: 'root',
@@ -84,7 +85,7 @@ editUserPictureAPI(reqBody:any){
 
 // get appprove feedback
 getApproveFeedbacksAPI(){
-  return this.http.get(`${this.server_url}/feedbacks-approve`)
+  return this.http.get(`${this.server_url}/feedback-approve`)
 
 }
 // admin get all users list
@@ -97,5 +98,19 @@ getDownloadAPI(){
   return this.http.get(`${this.server_url}/downloads`,this.appenedToken())
 
 }
-  
+  // add recipe admin
+  addRecipeAPI(reqBody:RecipeModel){
+  return this.http.post(`${this.server_url}/recipes`,reqBody,this.appenedToken())
+
+}
+
+  //http://localhost:3000/feedbacks get by admin feedback when page loads
+  getFeedbackListAPI(){
+     return this.http.get(`${this.server_url}/feedbacks`,this.appenedToken())
+  }
+
+   //http://localhost:3000/feedbacks/697866d79dc39140307a5d8b : put by feedback when approve / reject btn clicked
+  updateFeedbackStatusAPI(id:string,reqBody:any){
+     return this.http.put(`${this.server_url}/feedbacks/${id}`,reqBody,this.appenedToken())
+  }
 }
