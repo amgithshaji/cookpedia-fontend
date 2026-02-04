@@ -113,4 +113,17 @@ getDownloadAPI(){
   updateFeedbackStatusAPI(id:string,reqBody:any){
      return this.http.put(`${this.server_url}/feedbacks/${id}`,reqBody,this.appenedToken())
   }
+
+  // http://localhost:3000/recipes/69818fa4976f6c0b54efdb79: delete recipe by admin
+    removeRecipeAPI(id:string){
+     return this.http.delete(`${this.server_url}/recipes/${id}`,this.appenedToken())
+  }
+  
+  // http://localhost:3000/recipes/6982e3baa779923ec4e95fb4:edit recipe when edit update is clicked
+      editRecipeAPI(id:string,reqBody:RecipeModel){
+     return this.http.put(`${this.server_url}/recipes/${id}`,reqBody,this.appenedToken())
+  }
+
+
+
 }

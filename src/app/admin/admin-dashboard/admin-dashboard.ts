@@ -1,5 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from '../../services/api-service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -8,9 +9,31 @@ import { Router } from '@angular/router';
   styleUrl: './admin-dashboard.css',
 })
 export class AdminDashboard {
-
+  
+  api= inject(ApiService)
   isSidebarOpen:boolean = true
   router = inject(Router)
+  userCount = signal<number>(0)
+  recipeCount = signal<number>(0)
+  downloadCount = signal<number>(0)
+  notificationCount = signal<number>(0)
+
+ngOnInit(){
+  this.getUserCount()
+  this.downloadCount()
+}
+
+  getUserCount(){
+    this.api.getUserListAPI().subscribe((res:any)=>{
+      this.userCount.set(res.length)
+    })
+  }
+
+  getDownloadCount(){
+    this.api.getDownloadAPI().subscribe((res:any)=>{
+      this.downloadCount.set(res.length)
+    })
+  }
 
   toggleSidebar(){
     this.isSidebarOpen = !this.isSidebarOpen
