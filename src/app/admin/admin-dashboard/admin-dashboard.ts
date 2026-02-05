@@ -9,7 +9,8 @@ import { ApiService } from '../../services/api-service';
   styleUrl: './admin-dashboard.css',
 })
 export class AdminDashboard {
-  
+   
+  selected = new Date()
   api= inject(ApiService)
   isSidebarOpen:boolean = true
   router = inject(Router)
@@ -17,10 +18,51 @@ export class AdminDashboard {
   recipeCount = signal<number>(0)
   downloadCount = signal<number>(0)
   notificationCount = signal<number>(0)
+  chartOptions: Highcharts.Options = {}; // Required
+
+
+  constructor(){
+    if (localStorage.getItem("chart")) {
+      const data = JSON.parse(localStorage.getItem("chart") || "")
+       this.chartOptions ={
+      chart:{
+        type:'bar'
+      },
+      title:{
+        text:'Analysis of Download Recipe Based on its cuisine'
+      },
+      xAxis:{
+        type:'category'
+      },
+      yAxis:{
+        title:{
+          text:'total download recipe count'
+        }
+      },
+      legend:{
+        enabled:false
+      },
+      credits:{
+        enabled:false
+      },
+      series:[
+        {
+          name:'Download count',
+          colorByPoint:true,
+          type:'bar',
+          data
+        }
+      ]
+    }
+    }
+   
+  }
 
 ngOnInit(){
   this.getUserCount()
-  this.downloadCount()
+  this.getDownloadCount()
+  this.getRecipeCount()
+  this.getNotificationCount()
 }
 
   getUserCount(){
@@ -34,6 +76,20 @@ ngOnInit(){
       this.downloadCount.set(res.length)
     })
   }
+
+   getRecipeCount(){
+    this.api.getAllRecipes().subscribe((res:any)=>{
+      this.recipeCount.set(res.length)
+    })
+
+   }
+
+   getNotificationCount(){
+    this.api.getFeedbackListAPI().subscribe((res:any)=>{
+      this.notificationCount.set(res.filter((item:any)=>item.status=="pending").length)
+    })
+
+   }
 
   toggleSidebar(){
     this.isSidebarOpen = !this.isSidebarOpen

@@ -70,6 +70,22 @@
                     </div>
                  </div>
             </div>
+            <div class="row" >
+              <div class="col-lg-7">
+                <!-- chart -->
+                  <highcharts-chart
+      [options]="chartOptions"
+      class="chart"
+    />
+              </div>
+              <div class="col-lg-5">
+                <!-- calender -->
+                 <mat-card class="demo-inline-calendar-card">
+               <mat-calendar [(selected)]="selected"></mat-calendar>
+                 </mat-card>
+
+              </div>
+            </div>
     </div>
    </div> 
 </div>
