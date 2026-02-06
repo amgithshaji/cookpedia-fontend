@@ -9,11 +9,12 @@ import { UserCollection } from './user-collection/user-collection';
 import { UserProfile } from './user-profile/user-profile';
 import { ViewRecipe } from './view-recipe/view-recipe';
 import { Pnf } from './pnf/pnf';
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
   // lazy loading
   {
-    path:'admin', loadChildren:()=>import('./admin/admin-module').then(module=>module.AdminModule)
+    path:'admin',canActivate:[authGuard], loadChildren:()=>import('./admin/admin-module').then(module=>module.AdminModule)
 
   },
     // home
@@ -42,15 +43,15 @@ export const routes: Routes = [
     },
          // collection
       {
-        path:'user/collection',component:UserCollection,title:"Collection"
+        path:'user/collection',canActivate:[authGuard],component:UserCollection,title:"Collection"
     },
          // profile
    {
-        path:'user/profile',component:UserProfile,title:"Profile"
+        path:'user/profile',canActivate:[authGuard],component:UserProfile,title:"Profile"
     },
           // view-recipe
    {
-        path:'recipes/:id/view',component:ViewRecipe,title:"Recipe"
+        path:'recipes/:id/view',canActivate:[authGuard],component:ViewRecipe,title:"Recipe"
     },
             // pnf
    {
